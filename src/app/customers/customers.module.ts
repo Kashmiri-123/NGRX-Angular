@@ -7,6 +7,8 @@ import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { StoreModule } from '@ngrx/store';
 import {customerReducer} from "./state/customer.reducer";
+import { Actions, EffectsModule } from "@ngrx/effects";
+import { CustomerEffect } from './state/customer.effects';
 
 const customerRoutes: Routes = [
   {
@@ -26,7 +28,8 @@ const customerRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(customerRoutes),
-    StoreModule.forFeature("customers", customerReducer)
+    StoreModule.forFeature("customers", customerReducer),
+    EffectsModule.forFeature([CustomerEffect])
   ]
 })
 export class CustomersModule { }
